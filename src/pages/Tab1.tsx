@@ -5,23 +5,14 @@ import './Tab1.css';
 import { connect as mqttConnect } from "mqtt"
 
 const Tab1: React.FC = () => {
-  function test1() {
-    console.log("test pin 10");
-  }
 
-  function test2() {
-    console.log("test pin 11");
-
-  }
 
   //connect to our broker
   //IMPORTANT: you have to add "ws://" and the websockets port
   // use "ws://test.mosquitto.org:8080" for public broker
   let mqttClient = mqttConnect("wss://mqtt.wdaan.tools")
   //export MQTT
-  //export MQTT
   mqttClient.on("connect", function () {
-    console.log("bjhdbkg");
     // subscribe on a topic after connected
     mqttClient.subscribe("robbe")
     // send a message to test if the connection is working
@@ -32,14 +23,18 @@ const Tab1: React.FC = () => {
     console.log(topic, message.toString())
   })
 
-  function test1() {
-    console.log("test pin 10");
-    mqttClient.publish("robbe", JSON.stringify({pin: 10, status: 1}))
+  function Pin_GPIO26() {
+    console.log("GPIO26 Hoog");
+    mqttClient.publish("robbe", JSON.stringify({pin: 37, status: 1}))
   }
 
-  function test2() {
-    console.log("test pin 11");
+  function Pin_GPIO19() {
+    console.log("GPIO26 Hoog");
+    mqttClient.publish("robbe", JSON.stringify({pin: 35, status: 1}))
+  }
 
+  function Pin_clear(){
+    mqttClient.publish("robbe", JSON.stringify({pin: 0, status: 0}))
   }
 
 
@@ -52,8 +47,9 @@ const Tab1: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonButton type="button" onClick={() => test1()} >Set Output Pin 10</IonButton>
-        <IonButton type="button" onClick={() => test2()} >Set Output Pin 11</IonButton>
+        <IonButton type="button" onClick={() => Pin_GPIO26()} >Set Output Pin 37</IonButton>
+        <IonButton type="button" onClick={() => Pin_GPIO19()} >Set Output Pin 35</IonButton>
+        <IonButton type="button" onClick={() => Pin_clear()} >clear</IonButton>
       </IonContent>
     </IonPage>
   );
