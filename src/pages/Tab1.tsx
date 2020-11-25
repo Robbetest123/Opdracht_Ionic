@@ -17,20 +17,29 @@ const Tab1: React.FC = () => {
   //connect to our broker
   //IMPORTANT: you have to add "ws://" and the websockets port
   // use "ws://test.mosquitto.org:8080" for public broker
-  let mqttClient = mqttConnect("mqtt://test.mosquitto.org:8080/ws")
+  let mqttClient = mqttConnect("wss://mqtt.wdaan.tools")
   //export MQTT
-  function useMQTTMessages() {
-    mqttClient.on("connect", function () {
-      console.log("bjhdbkg");
-      // subscribe on a topic after connected
-      mqttClient.subscribe("robbe")
-      // send a message to test if the connection is working
-      mqttClient.publish("robbe", "Connected")
-    })
-    mqttClient.on("message", function (topic, message) {
-      // show received message
-      console.log(topic, message.toString())
-    })
+  //export MQTT
+  mqttClient.on("connect", function () {
+    console.log("bjhdbkg");
+    // subscribe on a topic after connected
+    mqttClient.subscribe("robbe")
+    // send a message to test if the connection is working
+    mqttClient.publish("robbe", "Connected")
+  })
+  mqttClient.on("message", function (topic, message) {
+    // show received message
+    console.log(topic, message.toString())
+  })
+
+  function test1() {
+    console.log("test pin 10");
+    mqttClient.publish("robbe", JSON.stringify({pin: 10, status: 1}))
+  }
+
+  function test2() {
+    console.log("test pin 11");
+
   }
 
 
