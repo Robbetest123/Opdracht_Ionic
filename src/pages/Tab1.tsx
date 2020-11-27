@@ -26,6 +26,10 @@ const Tab1: React.FC = () => {
   function Pin_GPIO26() {
     console.log("GPIO26 Hoog");
     mqttClient.publish("robbe", JSON.stringify({pin: 37, status: 1}))
+    //
+    mqttClient.on("message", function (topic, message) {
+      console.log(topic, message.toString())
+    })
   }
 
   function Pin_GPIO19() {
