@@ -47,7 +47,7 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Pinnen inlezen</IonTitle>
+          <IonTitle>Read Pins</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
